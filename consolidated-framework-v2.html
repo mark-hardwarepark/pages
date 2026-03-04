@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biodesign Fellowship — Consolidated Competency Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bin1: #1a6b4a;
+    --bin1-bg: #e8f5ee;
+    --bin1-border: #b8dcc8;
+    --bin1-light: #f4faf7;
+    --bin2: #8b6914;
+    --bin2-bg: #fef8e8;
+    --bin2-border: #e8d9a0;
+    --bin2-light: #fffcf3;
+    --text: #1a1a2e;
+    --text-sec: #4a4a6a;
+    --text-light: #7a7a9a;
+    --bg: #fafaf8;
+    --card: #ffffff;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-hover: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 48px 24px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ===== HEADER ===== */
+  header { text-align: center; margin-bottom: 12px; }
+  h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .subtitle {
+    font-size: 0.92rem;
+    color: var(--text-sec);
+    max-width: 700px;
+    margin: 0 auto 36px;
+    line-height: 1.5;
+  }
+
+  /* ===== CONTEXT BOX ===== */
+  .context-box {
+    background: var(--card);
+    border-left: 4px solid var(--text);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .context-box .ctx-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sec);
+    margin-bottom: 8px;
+  }
+  .context-box p {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .context-box p:last-child { margin-bottom: 0; }
+
+  /* ===== SUMMARY STRIP ===== */
+  .summary-strip {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .summary-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 28px;
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    min-width: 240px;
+  }
+  .summary-card .count {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .summary-card .label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+  .summary-card .desc {
+    font-size: 0.72rem;
+    color: var(--text-sec);
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+  .summary-card.bin1 { border-left: 4px solid var(--bin1); }
+  .summary-card.bin1 .count, .summary-card.bin1 .label { color: var(--bin1); }
+  .summary-card.bin2 { border-left: 4px solid var(--bin2); }
+  .summary-card.bin2 .count, .summary-card.bin2 .label { color: var(--bin2); }
+  .summary-card.total { border-left: 4px solid var(--text); }
+  .summary-card.total .count, .summary-card.total .label { color: var(--text); }
+
+  /* ===== VIEW TOGGLE ===== */
+  .view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 36px;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 4px;
+    box-shadow: var(--shadow);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .view-btn {
+    padding: 10px 22px;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-sec);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  .view-btn:hover { color: var(--text); background: rgba(0,0,0,0.03); }
+  .view-btn.active { background: var(--text); color: white; }
+
+  /* ===== HIERARCHY VIEW ===== */
+  .view-panel { display: none; }
+  .view-panel.active { display: block; }
+
+  .bin-section { margin-bottom: 32px; }
+  .bin-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+  .bin-section-header h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .bin-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .b1 h2 { color: var(--bin1); }
+  .b1 .bin-badge { background: var(--bin1-bg); color: var(--bin1); }
+  .b2 h2 { color: var(--bin2); }
+  .b2 .bin-badge { background: var(--bin2-bg); color: var(--bin2); }
+
+  /* Parent competency cards */
+  .comp-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+  .comp-card:hover { box-shadow: var(--shadow-hover); }
+
+  .comp-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .comp-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .comp-num.b1 { background: var(--bin1); }
+  .comp-num.b2 { background: var(--bin2); }
+
+  .comp-info { flex: 1; }
+  .comp-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+  }
+  .comp-desc {
+    font-size: 0.82rem;
+    color: var(--text-sec);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .sub-count {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-light);
+    background: rgba(0,0,0,0.04);
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .toggle-arrow {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .comp-card.open .toggle-arrow { transform: rotate(90deg); }
+
+  /* Sub-skills panel */
+  .sub-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background: linear-gradient(180deg, rgba(0,0,0,0.015) 0%, transparent 100%);
+  }
+  .comp-card.open .sub-panel { max-height: 2000px; }
+
+  .sub-list { padding: 4px 20px 16px 66px; }
+
+  .sub-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .sub-item:last-child { border-bottom: none; }
+
+  .sub-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .sub-dot.b1 { background: var(--bin1); }
+  .sub-dot.b2 { background: var(--bin2); }
+
+  .sub-name {
+    font-weight: 600;
+    font-size: 0.84rem;
+    margin-bottom: 2px;
+  }
+  .sub-detail {
+    font-size: 0.78rem;
+    color: var(--text-sec);
+    line-height: 1.5;
+  }
+
+  /* ===== COMPACT TABLE VIEW ===== */
+  .compact-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .compact-table th {
+    padding: 12px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: left;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    background: #fafafa;
+    position: sticky;
+    top: 0;
+  }
+  .compact-table td {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    vertical-align: top;
+  }
+  .compact-table tr:last-child td { border-bottom: none; }
+  .compact-table tr:hover td { background: rgba(0,0,0,0.012); }
+
+  .compact-bin {
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .cb1 { background: var(--bin1-bg); color: var(--bin1); }
+  .cb2 { background: var(--bin2-bg); color: var(--bin2); }
+
+  .compact-subs {
+    font-size: 0.76rem;
+    color: var(--text-sec);
+    line-height: 1.5;
+  }
+
+  /* ===== PROGRESSION VIEW ===== */
+  .prog-intro {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .prog-intro h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .prog-intro p {
+    font-size: 0.84rem;
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+
+  .prog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .prog-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .prog-card-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .prog-card-header .comp-num { width: 28px; height: 28px; font-size: 0.75rem; }
+  .prog-card-header .comp-name { font-size: 0.9rem; }
+  .prog-card .toggle-arrow { margin-top: 0; }
+
+  .prog-levels {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .prog-card.open .prog-levels { max-height: 1200px; }
+
+  .prog-level {
+    padding: 14px 20px 14px 56px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+  .prog-level-name {
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+  }
+  .prog-level-name.aware { color: #8b6914; }
+  .prog-level-name.applied { color: #2d6a4f; }
+  .prog-level-name.integrated { color: #1a4731; }
+  .prog-level-desc {
+    font-size: 0.8rem;
+    color: var(--text-sec);
+    line-height: 1.55;
+  }
+
+  /* ===== THEMATIC GROUPS VIEW ===== */
+  .theme-section { margin-bottom: 32px; }
+  .theme-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+  .theme-header h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .theme-header .theme-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .theme-header .theme-count {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .theme-understand .theme-icon { background: #e8f0fe; }
+  .theme-understand h2 { color: #2962a8; }
+  .theme-understand .theme-count { background: #e8f0fe; color: #2962a8; }
+  .theme-decide .theme-icon { background: #fce8e6; }
+  .theme-decide h2 { color: #b3362a; }
+  .theme-decide .theme-count { background: #fce8e6; color: #b3362a; }
+  .theme-deliver .theme-icon { background: #e8f5ee; }
+  .theme-deliver h2 { color: #1a6b4a; }
+  .theme-deliver .theme-count { background: #e8f5ee; color: #1a6b4a; }
+  .theme-grow .theme-icon { background: #fef8e8; }
+  .theme-grow h2 { color: #8b6914; }
+  .theme-grow .theme-count { background: #fef8e8; color: #8b6914; }
+
+  .theme-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: box-shadow 0.2s ease;
+  }
+  .theme-card:hover { box-shadow: var(--shadow-hover); }
+  .theme-card .comp-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .theme-card .comp-info { flex: 1; }
+  .theme-card .comp-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+  }
+  .theme-card .comp-desc {
+    font-size: 0.82rem;
+    color: var(--text-sec);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .theme-card .assessment-tag {
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .assessment-tag.at1 { background: var(--bin1-bg); color: var(--bin1); }
+  .assessment-tag.at2 { background: var(--bin2-bg); color: var(--bin2); }
+
+  .theme-intro {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .theme-intro h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .theme-intro p {
+    font-size: 0.84rem;
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer-note {
+    text-align: center;
+    font-size: 0.76rem;
+    color: var(--text-light);
+    margin-top: 48px;
+    font-style: italic;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 700px) {
+    body { padding: 24px 16px 60px; }
+    h1 { font-size: 1.7rem; }
+    .summary-strip { flex-direction: column; align-items: center; }
+    .sub-list { padding-left: 46px; }
+    .view-toggle { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Consolidated Competency Framework</h1>
+  <p class="subtitle">13 parent competencies assessed at two levels — 10 through work products and deliverables, 3 through reflection, observation, and coaching — with progression from Aware through Applied to Integrated</p>
+</header>
+
+<div class="context-box">
+  <div class="ctx-label">Framework Architecture</div>
+  <p><strong>Parent competencies</strong> are what gets tracked, assessed, and reported. These are the 13 things a fellow demonstrably develops over 12 months.</p>
+  <p><strong>Sub-skills</strong> remain visible to fellows and staff as the specific practices and behaviors that compose each parent competency. They guide feedback conversations, self-reflection, and rubric development — but they don't get separate assessment lines.</p>
+  <p><strong>Progression levels</strong> (Aware → Applied → Integrated) describe developmental depth. Fellows are expected to reach at least the Applied level in all competencies by the end of the fellowship, with Integrated representing exceptional depth.</p>
+</div>
+
+<div class="summary-strip">
+  <div class="summary-card bin1">
+    <div class="count">10</div>
+    <div>
+      <div class="label">Work Products & Deliverables</div>
+      <div class="desc">Mastery rubric against deliverables</div>
+    </div>
+  </div>
+  <div class="summary-card bin2">
+    <div class="count">3</div>
+    <div>
+      <div class="label">Reflection & Observation</div>
+      <div class="desc">Self-reflection, coaching, peer feedback</div>
+    </div>
+  </div>
+  <div class="summary-card total">
+    <div class="count">42</div>
+    <div>
+      <div class="label">Total Sub-Skills</div>
+      <div class="desc">Visible practices within parent competencies</div>
+    </div>
+  </div>
+</div>
+
+<div class="view-toggle">
+  <button class="view-btn active" onclick="switchView('hierarchy')">Hierarchy</button>
+  <button class="view-btn" onclick="switchView('thematic')">Thematic Groups</button>
+  <button class="view-btn" onclick="switchView('compact')">Compact Table</button>
+  <button class="view-btn" onclick="switchView('progression')">Progression Levels</button>
+</div>
+
+<!-- ===== HIERARCHY VIEW ===== -->
+<div class="view-panel active" id="hierarchyView">
+
+  <!-- Assessed Through Work Products and Deliverables -->
+  <div class="bin-section">
+    <div class="bin-section-header b1">
+      <h2>Assessed Through Work Products and Deliverables</h2>
+      <span class="bin-badge">10 competencies</span>
+    </div>
+
+    <!-- 1. Empathy & Perspective-Driven Design -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">1</div>
+        <div class="comp-info">
+          <div class="comp-name">Empathy & Perspective-Driven Design</div>
+          <div class="comp-desc">Understanding the people your work affects well enough to make better decisions for them — through observation, deliberate perspective-taking, and checking your own blind spots.</div>
+        </div>
+        <span class="sub-count">4 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Observation & need-finding</div><div class="sub-detail">Watching people in context, suspending assumptions, and identifying unmet needs through direct engagement rather than desk research alone.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Stakeholder interviewing & need elicitation</div><div class="sub-detail">Conducting structured and semi-structured interviews with users, clinicians, caregivers, and other stakeholders to surface unmet needs, pain points, and workarounds.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Stakeholder perspective-taking</div><div class="sub-detail">Carrying empathy beyond initial observation into design decisions, concept evaluation, and testing strategy. Using tools like influence-interest mapping and value network diagrams.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Bias recognition in design & research</div><div class="sub-detail">Checking blind spots and recognizing when assumptions, methods, or team composition systematically miss someone's experience.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Problem Framing & Reframing -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">2</div>
+        <div class="comp-info">
+          <div class="comp-name">Problem Framing & Reframing</div>
+          <div class="comp-desc">Defining what problem is worth solving — questioning assumptions, reframing to expose better solution spaces, and applying first-principles reasoning to resist premature solutions.</div>
+        </div>
+        <span class="sub-count">2 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">First-principles reasoning</div><div class="sub-detail">Breaking problems down to fundamental components and building understanding from the ground up, rather than reasoning by analogy or convention.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Reframe generation</div><div class="sub-detail">Deliberately producing alternative framings of the same problem to expand the solution space and avoid premature convergence.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. AI Fluency -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">3</div>
+        <div class="comp-info">
+          <div class="comp-name">AI Fluency</div>
+          <div class="comp-desc">Directing, verifying, and integrating AI tools into professional work with skill and accountability.</div>
+        </div>
+        <span class="sub-count">4 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Prompt engineering & iterative direction</div><div class="sub-detail">Structuring clear, context-rich prompts, providing constraints, and refining through iterative cycles to get increasingly useful outputs.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Output validation & calibrated skepticism</div><div class="sub-detail">Evaluating AI outputs against known standards and domain knowledge. Developing an accurate sense of when AI tools are reliable versus confidently wrong.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">AI-augmented workflow design</div><div class="sub-detail">Identifying which parts of a workflow benefit from AI assistance and building repeatable processes that leverage AI while preserving human judgment.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Ethical ownership of AI outputs</div><div class="sub-detail">Taking accountability for quality, accuracy, and representativeness of AI-generated work. A fellow's name on the work means they've vetted what the tool produced.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Evidence Provenance & Critical Interpretation -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">4</div>
+        <div class="comp-info">
+          <div class="comp-name">Evidence Provenance & Critical Interpretation</div>
+          <div class="comp-desc">Understanding where evidence comes from, what it can and cannot support, and making sound inferences under uncertainty.</div>
+        </div>
+        <span class="sub-count">2 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Quantitative data provenance & interpretation</div><div class="sub-detail">Evaluating measurement uncertainty, sample size, statistical validity, and test method assumptions. Understanding what numbers actually tell you and where they stop being reliable.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Research & source credibility assessment</div><div class="sub-detail">Evaluating the reliability, methodology, and potential bias of published research, market reports, and other decision-driving sources. Calibrating confidence accordingly.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Technical & Stakeholder Communication -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">5</div>
+        <div class="comp-info">
+          <div class="comp-name">Technical & Stakeholder Communication</div>
+          <div class="comp-desc">Communicating technical work effectively across audiences and formats — translating complexity into clarity without losing rigor.</div>
+        </div>
+        <span class="sub-count">4 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Translational communication</div><div class="sub-detail">Explaining technical concepts to non-technical audiences and translating clinical, business, or regulatory concerns into language engineers can act on.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Structured argumentation & persuasion</div><div class="sub-detail">Building clear, evidence-based cases for design decisions, project directions, or resource requests with followable logic and traceable evidence.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Sketch communication</div><div class="sub-detail">Rapidly externalizing spatial, mechanical, or conceptual ideas through hand sketches during conversations and design reviews — a conversational tool, not a polished deliverable.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Data & visual communication</div><div class="sub-detail">Presenting quantitative information and complex relationships through charts, diagrams, and designed visuals. Making data tell a clear story rather than just displaying numbers.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Systems & Integrative Reasoning -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">6</div>
+        <div class="comp-info">
+          <div class="comp-name">Systems & Integrative Reasoning</div>
+          <div class="comp-desc">Seeing interactions across subsystems, translating across disciplines, and anticipating how changes propagate through complex systems.</div>
+        </div>
+        <span class="sub-count">3 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Systems thinking & feedback loop analysis</div><div class="sub-detail">Identifying variables, relationships, and feedback loops that define system behavior. Using causal loop diagrams, recognizing delays, understanding why systems resist intervention.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Cross-disciplinary synthesis</div><div class="sub-detail">Integrating knowledge and methods from different fields into coherent solutions. Recognizing when a problem requires expertise beyond your discipline and bringing perspectives together productively.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">2nd & 3rd-order consequence modeling (awareness level)</div><div class="sub-detail">Anticipating how a design decision, policy change, or intervention ripples beyond its immediate effect into adjacent systems.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Agile & Iterative Project Execution -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">7</div>
+        <div class="comp-info">
+          <div class="comp-name">Agile & Iterative Project Execution</div>
+          <div class="comp-desc">Breaking work into testable increments, incorporating feedback loops, and treating each iteration as an opportunity to learn and adjust.</div>
+        </div>
+        <span class="sub-count">3 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Sprint planning & task decomposition</div><div class="sub-detail">Breaking work into time-bounded, prioritized sprints with clear deliverables, estimating effort, and delivering on commitments within sprint cycles.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Clarifying ambiguity through iterative testing & learning loops</div><div class="sub-detail">Moving forward productively when requirements are incomplete. Designing each iteration to answer a specific question, capturing learnings, and adjusting based on evidence.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Retrospective practice</div><div class="sub-detail">Structured reflection on what worked, what didn't, and what to change — applied to the process itself, not just the product.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Regulatory & Compliance Literacy -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">8</div>
+        <div class="comp-info">
+          <div class="comp-name">Regulatory & Compliance Literacy</div>
+          <div class="comp-desc">Understanding how innovation interacts with governance frameworks — designing with regulatory and quality constraints from the start.</div>
+        </div>
+        <span class="sub-count">3 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Regulatory pathway analysis</div><div class="sub-detail">Understanding clearance and approval mechanisms, identifying the most appropriate pathway for a given product, and articulating the rationale. Knowing the difference between 510(k), De Novo, and PMA.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Design controls & documentation practice</div><div class="sub-detail">Working within a design control framework from the start, understanding that how you develop is as important as what you develop. Documentation that serves both the team and future regulatory submissions.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Risk management fundamentals</div><div class="sub-detail">Applying structured risk analysis to design decisions, understanding ISO 14971 basics, and integrating risk thinking into everyday engineering judgment.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Venture Economics -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">9</div>
+        <div class="comp-info">
+          <div class="comp-name">Venture Economics</div>
+          <div class="comp-desc">Tracing the financial implications of technical decisions and the technical implications of financial constraints. Every technical decision is simultaneously an economic one.</div>
+        </div>
+        <span class="sub-count">4 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Market & competitive intelligence</div><div class="sub-detail">Understanding market size, segmentation, competitive positioning, pricing dynamics, and buying processes. Evaluating competitive products on commercial positioning, not just technical merit.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Problem economics & viability assessment</div><div class="sub-detail">Evaluating whether the economics of a problem justify pursuing a solution. Sizing cost burden, identifying who pays, understanding reimbursement pathways.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Product economic modeling</div><div class="sub-detail">Building rough but honest estimates of development cost, unit economics, and capital requirements. Thinking through concept-to-clearance costs, unit costs, minimum viable pricing, and margin structure.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Financial dimensions of design decisions</div><div class="sub-detail">Evaluating technical tradeoffs with cost alongside performance, manufacturability, and regulatory considerations. Includes target costing, DFM, burn rate awareness, and build-vs-license-vs-partner reasoning.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Patent & IP Intelligence -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b1">10</div>
+        <div class="comp-info">
+          <div class="comp-name">Patent & IP Intelligence</div>
+          <div class="comp-desc">Understanding and navigating the intellectual property landscape to inform whether and how to pursue a project, using AI tools to conduct research and critical judgment to interpret results.</div>
+        </div>
+        <span class="sub-count">4 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Patent system literacy</div><div class="sub-detail">Understanding provisional vs. non-provisional applications, utility vs. design patents, patentability, filing timelines, maintenance requirements, and term lengths.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Patent landscape research</div><div class="sub-detail">Searching patent databases, identifying relevant patents, pulling key information (claims, filing dates, assignees, patent families), and summarizing the landscape for go/no-go decisions.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">Freedom-to-operate assessment</div><div class="sub-detail">Understanding what freedom to operate means, evaluating whether a concept falls within existing patent claims, and flagging potential conflicts for expert review.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b1"></div><div><div class="sub-name">IP-aware documentation practices</div><div class="sub-detail">Maintaining engineering notebooks and design records that support potential patent filings. Understanding inventorship, dates of conception and reduction to practice.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end work products section -->
+
+  <!-- Assessed Through Reflection, Observation, and Coaching -->
+  <div class="bin-section">
+    <div class="bin-section-header b2">
+      <h2>Assessed Through Reflection, Observation, and Coaching</h2>
+      <span class="bin-badge">3 competencies</span>
+    </div>
+
+    <!-- 11. Collaborative Professional Practice -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b2">11</div>
+        <div class="comp-info">
+          <div class="comp-name">Collaborative Professional Practice</div>
+          <div class="comp-desc">Working generatively with others — building on ideas, giving actionable feedback, and navigating disagreement as a productive force rather than a threat.</div>
+        </div>
+        <span class="sub-count">3 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Co-creation & generative collaboration</div><div class="sub-detail">Contributing to shared work in ways that build on others' ideas rather than just defending your own. Thinking together rather than dividing and conquering.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Feedback as professional practice</div><div class="sub-detail">Giving specific, actionable feedback that helps others improve, and receiving feedback without defensiveness. Treating feedback as normal professional work.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Navigating conflict & disagreement productively</div><div class="sub-detail">Engaging with disagreement as a source of better decisions. Distinguishing productive tension about ideas from unproductive friction between people.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Professional Growth & Adaptability -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b2">12</div>
+        <div class="comp-info">
+          <div class="comp-name">Professional Growth & Adaptability</div>
+          <div class="comp-desc">Learning fast, moving forward under uncertainty, and taking ownership of your own development trajectory.</div>
+        </div>
+        <span class="sub-count">3 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Adaptive learning & framework transfer</div><div class="sub-detail">Learning new concepts, tools, and methods quickly and applying frameworks from one domain to unfamiliar problems. Learning what you need when you need it.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Operating under ambiguity</div><div class="sub-detail">Making progress when the path isn't clear, requirements aren't fully defined, or information is incomplete. Tolerating uncertainty without freezing or rushing to premature closure.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Self-directed professional development</div><div class="sub-detail">Identifying your own skill gaps, seeking out learning opportunities, and taking initiative for growth rather than waiting for assigned development activities.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. Ethical Reasoning & Responsible Innovation -->
+    <div class="comp-card" onclick="this.classList.toggle('open')">
+      <div class="comp-header">
+        <div class="comp-num b2">13</div>
+        <div class="comp-info">
+          <div class="comp-name">Ethical Reasoning & Responsible Innovation</div>
+          <div class="comp-desc">Recognizing ethical dimensions in real work and reasoning through genuine moral complexity — practical judgment that shapes design and development decisions.</div>
+        </div>
+        <span class="sub-count">4 sub-skills</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="sub-panel">
+        <div class="sub-list">
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Responsible innovation & foresight</div><div class="sub-detail">Recognizing when decisions carry ethical weight and proactively considering downstream consequences before problems emerge. Building the habit of asking "should we?" alongside "can we?"</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Understanding AI limitations by domain</div><div class="sub-detail">Exercising judgment about when AI tools are and aren't appropriate based on stakes, domain, and tool reliability. Recognizing that effectiveness for brainstorming doesn't imply reliability for regulatory research.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">Ethical reasoning under competing values</div><div class="sub-detail">Working through genuine moral tradeoffs where legitimate values conflict — access vs. affordability, speed vs. thoroughness, innovation vs. precaution.</div></div></div>
+          <div class="sub-item"><div class="sub-dot b2"></div><div><div class="sub-name">2nd & 3rd-order consequence modeling</div><div class="sub-detail">Anticipating how innovations ripple beyond intended use into broader systems. Moving beyond "does this work?" to "what happens when this works at scale?" At the awareness level: developing the habit of asking "and then what happens?"</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end reflection section -->
+</div><!-- end hierarchy view -->
+
+<!-- ===== THEMATIC GROUPS VIEW ===== -->
+<div class="view-panel" id="thematicView">
+  <div class="theme-intro">
+    <h3>Four Thematic Groups</h3>
+    <p>The 13 competencies cluster naturally into four groups that describe the arc of what fellows learn: understanding problems deeply, making informed decisions, delivering real work in regulated environments, and growing as professionals. This grouping cuts across the assessment-method categories — each group may include competencies assessed through work products as well as through reflection and coaching.</p>
+  </div>
+
+  <!-- Understanding the Problem -->
+  <div class="theme-section">
+    <div class="theme-header theme-understand">
+      <h2>Understanding the Problem</h2>
+      <span class="theme-count">2 competencies</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">1</div>
+      <div class="comp-info">
+        <div class="comp-name">Empathy & Perspective-Driven Design</div>
+        <div class="comp-desc">Understanding the people your work affects well enough to make better decisions for them — through observation, deliberate perspective-taking, and checking your own blind spots.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">2</div>
+      <div class="comp-info">
+        <div class="comp-name">Problem Framing & Reframing</div>
+        <div class="comp-desc">Defining what problem is worth solving — questioning assumptions, reframing to expose better solution spaces, and applying first-principles reasoning to resist the pull toward premature solutions.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+  </div>
+
+  <!-- Making Smart Decisions -->
+  <div class="theme-section">
+    <div class="theme-header theme-decide">
+      <h2>Making Smart Decisions</h2>
+      <span class="theme-count">5 competencies</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">3</div>
+      <div class="comp-info">
+        <div class="comp-name">AI Fluency</div>
+        <div class="comp-desc">Directing, verifying, and integrating AI tools into professional work with skill and accountability.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">4</div>
+      <div class="comp-info">
+        <div class="comp-name">Evidence Provenance & Critical Interpretation</div>
+        <div class="comp-desc">Understanding where evidence comes from, what it can and cannot support, and making sound inferences under uncertainty.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">6</div>
+      <div class="comp-info">
+        <div class="comp-name">Systems & Integrative Reasoning</div>
+        <div class="comp-desc">Seeing interactions across subsystems, translating across disciplines, and anticipating how changes propagate through complex systems.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">9</div>
+      <div class="comp-info">
+        <div class="comp-name">Venture Economics</div>
+        <div class="comp-desc">Tracing the financial implications of technical decisions and the technical implications of financial constraints at every stage of the venture lifecycle. Every technical decision is simultaneously an economic one.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">10</div>
+      <div class="comp-info">
+        <div class="comp-name">Patent & IP Intelligence</div>
+        <div class="comp-desc">Understanding and navigating the intellectual property landscape to inform whether and how to pursue a project, using AI tools to conduct research and applying critical judgment to interpret results.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+  </div>
+
+  <!-- Delivering Real Work -->
+  <div class="theme-section">
+    <div class="theme-header theme-deliver">
+      <h2>Delivering Real Work</h2>
+      <span class="theme-count">3 competencies</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">5</div>
+      <div class="comp-info">
+        <div class="comp-name">Technical & Stakeholder Communication</div>
+        <div class="comp-desc">Communicating technical work effectively across audiences and formats — translating complexity into clarity without losing rigor.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">7</div>
+      <div class="comp-info">
+        <div class="comp-name">Agile & Iterative Project Execution</div>
+        <div class="comp-desc">Breaking work into testable increments, incorporating feedback loops, and treating each iteration as an opportunity to learn and adjust.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b1">8</div>
+      <div class="comp-info">
+        <div class="comp-name">Regulatory & Compliance Literacy</div>
+        <div class="comp-desc">Understanding how innovation interacts with governance frameworks — designing with regulatory and quality constraints from the start rather than treating regulatory requirements as obstacles to navigate after the fact.</div>
+      </div>
+      <span class="assessment-tag at1">Work Products</span>
+    </div>
+  </div>
+
+  <!-- Growing as a Professional -->
+  <div class="theme-section">
+    <div class="theme-header theme-grow">
+      <h2>Growing as a Professional</h2>
+      <span class="theme-count">3 competencies</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b2">11</div>
+      <div class="comp-info">
+        <div class="comp-name">Collaborative Professional Practice</div>
+        <div class="comp-desc">Working generatively with others — building on ideas, giving actionable feedback, and navigating disagreement as a productive force rather than a threat.</div>
+      </div>
+      <span class="assessment-tag at2">Reflection</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b2">12</div>
+      <div class="comp-info">
+        <div class="comp-name">Professional Growth & Adaptability</div>
+        <div class="comp-desc">Learning fast, moving forward under uncertainty, and taking ownership of your own development trajectory.</div>
+      </div>
+      <span class="assessment-tag at2">Reflection</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="comp-num b2">13</div>
+      <div class="comp-info">
+        <div class="comp-name">Ethical Reasoning & Responsible Innovation</div>
+        <div class="comp-desc">Recognizing ethical dimensions in real work and reasoning through genuine moral complexity — not as abstract principles but as practical judgment that shapes design and development decisions.</div>
+      </div>
+      <span class="assessment-tag at2">Reflection</span>
+    </div>
+  </div>
+
+</div><!-- end thematic view -->
+
+<!-- ===== COMPACT TABLE VIEW ===== -->
+<div class="view-panel" id="compactView">
+  <table class="compact-table">
+    <thead>
+      <tr>
+        <th style="width:36px">#</th>
+        <th style="width:100px">Assessment</th>
+        <th style="width:240px">Competency</th>
+        <th>Sub-Skills</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Empathy & Perspective-Driven Design</strong></td><td class="compact-subs">Observation & need-finding · Stakeholder interviewing & need elicitation · Stakeholder perspective-taking · Bias recognition in design & research</td></tr>
+      <tr><td>2</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Problem Framing & Reframing</strong></td><td class="compact-subs">First-principles reasoning · Reframe generation</td></tr>
+      <tr><td>3</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>AI Fluency</strong></td><td class="compact-subs">Prompt engineering & iterative direction · Output validation & calibrated skepticism · AI-augmented workflow design · Ethical ownership of AI outputs</td></tr>
+      <tr><td>4</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Evidence Provenance & Critical Interpretation</strong></td><td class="compact-subs">Quantitative data provenance & interpretation · Research & source credibility assessment</td></tr>
+      <tr><td>5</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Technical & Stakeholder Communication</strong></td><td class="compact-subs">Translational communication · Structured argumentation & persuasion · Sketch communication · Data & visual communication</td></tr>
+      <tr><td>6</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Systems & Integrative Reasoning</strong></td><td class="compact-subs">Systems thinking & feedback loop analysis · Cross-disciplinary synthesis · 2nd & 3rd-order consequence modeling (awareness level)</td></tr>
+      <tr><td>7</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Agile & Iterative Project Execution</strong></td><td class="compact-subs">Sprint planning & task decomposition · Clarifying ambiguity through iterative testing & learning loops · Retrospective practice</td></tr>
+      <tr><td>8</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Regulatory & Compliance Literacy</strong></td><td class="compact-subs">Regulatory pathway analysis · Design controls & documentation practice · Risk management fundamentals</td></tr>
+      <tr><td>9</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Venture Economics</strong></td><td class="compact-subs">Market & competitive intelligence · Problem economics & viability assessment · Product economic modeling · Financial dimensions of design decisions</td></tr>
+      <tr><td>10</td><td><span class="compact-bin cb1">Work Products</span></td><td><strong>Patent & IP Intelligence</strong></td><td class="compact-subs">Patent system literacy · Patent landscape research · Freedom-to-operate assessment · IP-aware documentation practices</td></tr>
+      <tr><td>11</td><td><span class="compact-bin cb2">Reflection</span></td><td><strong>Collaborative Professional Practice</strong></td><td class="compact-subs">Co-creation & generative collaboration · Feedback as professional practice · Navigating conflict & disagreement productively</td></tr>
+      <tr><td>12</td><td><span class="compact-bin cb2">Reflection</span></td><td><strong>Professional Growth & Adaptability</strong></td><td class="compact-subs">Adaptive learning & framework transfer · Operating under ambiguity · Self-directed professional development</td></tr>
+      <tr><td>13</td><td><span class="compact-bin cb2">Reflection</span></td><td><strong>Ethical Reasoning & Responsible Innovation</strong></td><td class="compact-subs">Responsible innovation & foresight · Understanding AI limitations by domain · Ethical reasoning under competing values · 2nd & 3rd-order consequence modeling</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== PROGRESSION VIEW ===== -->
+<div class="view-panel" id="progressionView">
+  <div class="prog-intro">
+    <h3>Progression Levels: Aware → Applied → Integrated</h3>
+    <p>Each competency is assessed against a three-level progression rubric. <strong>Aware</strong> means the fellow recognizes the concept and can apply it with guidance. <strong>Applied</strong> means they use it independently in their project work. <strong>Integrated</strong> means the competency is embedded in how they approach every problem — it's second nature. Fellows are expected to reach at least Applied by the end of 12 months.</p>
+  </div>
+
+  <div class="prog-grid">
+
+    <!-- 1 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">1</div>
+        <div class="comp-info"><div class="comp-name">Empathy & Perspective-Driven Design</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Conducts basic observation sessions and can identify obvious unmet needs when guided. Recognizes that different stakeholders have different perspectives. Understands the concept of bias in design but needs prompting to check for it.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Plans and conducts observation sessions and stakeholder interviews independently. Uses perspective-taking tools (influence-interest maps, value network diagrams) in project work. Proactively identifies potential blind spots in research methods and team composition.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Empathy is embedded in every phase of project work — from problem identification through concept evaluation and testing. Teaches observation and interviewing techniques to others. Routinely surfaces bias concerns the team hasn't considered and adjusts methods to address them.</div></div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">2</div>
+        <div class="comp-info"><div class="comp-name">Problem Framing & Reframing</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Recognizes that problem framing affects the solution space. Can identify assumptions in a given problem statement when prompted. Understands first-principles reasoning conceptually but defaults to reasoning by analogy.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Independently produces multiple framings of the same problem. Uses first-principles reasoning to question inherited assumptions and identify true constraints vs. conventions. Generates reframes that meaningfully change the solution space.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Instinctively questions problem framings before committing to a solution direction. Helps the team resist premature convergence. Produces reframes that have demonstrably opened better solution paths in project work.</div></div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">3</div>
+        <div class="comp-info"><div class="comp-name">AI Fluency</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Uses AI tools for basic tasks with simple prompts. Understands that AI outputs need verification but inconsistently checks them. Recognizes the concept of ethical responsibility for AI-generated content.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Writes structured, context-rich prompts and iterates effectively. Has developed reliable validation habits and can identify when AI outputs are unreliable. Designs repeatable workflows that integrate AI where it adds value. Takes full ownership of AI-generated work products.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">AI is a natural extension of their professional practice. Designs novel AI-augmented workflows for the team. Teaches effective AI use to others. Has a calibrated, domain-specific sense of when to trust, verify, or bypass AI tools.</div></div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">4</div>
+        <div class="comp-info"><div class="comp-name">Evidence Provenance & Critical Interpretation</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Conducts basic literature searches and distinguishes between primary and secondary sources. Understands that evidence quality varies. Can identify obvious weaknesses in a source when prompted.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Evaluates source quality independently. Produces analyses that explicitly address evidence gaps and uncertainty. Understands measurement limitations and statistical validity. Maintains organized reference management.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Evidence evaluation is embedded in their approach to every project. Proactively identifies when evidence is insufficient to support a decision, seeks out disconfirming evidence, and helps the team calibrate confidence appropriately.</div></div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">5</div>
+        <div class="comp-info"><div class="comp-name">Technical & Stakeholder Communication</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Communicates technical information clearly within their own discipline. Uses basic sketches and visuals. Can present work to a familiar audience. Understands that different audiences need different communication approaches.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Translates effectively between technical and non-technical audiences. Builds structured arguments for design decisions with traceable evidence. Uses sketch communication as a real-time conversational tool. Produces data visualizations that tell clear stories.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Moves fluently between disciplinary vocabularies without losing rigor. Communication quality elevates team decision-making. Adapts format, depth, and framing instinctively to audience and context. Others seek out their help communicating complex ideas.</div></div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">6</div>
+        <div class="comp-info"><div class="comp-name">Systems & Integrative Reasoning</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Recognizes that systems have interconnected components. Can identify basic feedback loops when guided. Understands that solutions in one area can create problems elsewhere. Seeks input from other disciplines.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Uses systems diagrams (causal loop, stock-and-flow) to make system dynamics visible. Independently identifies reinforcing and balancing loops. Integrates perspectives from multiple disciplines into coherent project recommendations. Anticipates first-order consequences of design decisions.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Systems thinking is a natural lens for all project work. Surfaces non-obvious interactions that the team missed. Anticipates second and third-order consequences. Facilitates cross-disciplinary conversations that produce genuinely integrated solutions.</div></div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">7</div>
+        <div class="comp-info"><div class="comp-name">Agile & Iterative Project Execution</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Understands sprint-based workflow. Can break a large task into smaller pieces with guidance. Participates in retrospectives. Understands the concept of iterative testing but may default to building before testing.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Plans and executes sprints independently. Designs iterations to answer specific questions. Accurately estimates effort for familiar task types. Leads retrospectives and implements process changes. Makes work visible through consistent documentation.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Agile practice is embedded in how they approach all work. Helps the team maintain sprint discipline when pressure mounts. Uses retrospective insights to improve team-level processes. Balances speed with rigor instinctively.</div></div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">8</div>
+        <div class="comp-info"><div class="comp-name">Regulatory & Compliance Literacy</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Knows that medical devices require regulatory clearance/approval. Can distinguish between major pathway types (510(k), De Novo, PMA). Understands that documentation matters for compliance. Recognizes risk management as a regulatory requirement.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Analyzes regulatory pathways for specific products and articulates pathway rationale. Produces design documentation that would be useful in a regulatory submission. Applies ISO 14971 risk management principles to design decisions. Works within a design control framework naturally.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Regulatory and quality thinking is embedded in every design decision from the start. Helps the team see regulatory requirements as design constraints that shape better solutions, not bureaucratic obstacles. Risk management is a natural part of engineering judgment.</div></div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">9</div>
+        <div class="comp-info"><div class="comp-name">Venture Economics</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Understands that technical decisions have cost implications. Can identify basic market information (size, competitors, pricing) with guidance. Knows that medical device reimbursement affects viability. Understands the concept of unit economics.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Produces competitive analyses that inform positioning decisions. Evaluates problem economics independently — sizing cost burden, identifying payers, assessing viability. Builds rough product economic models. Evaluates design tradeoffs with cost as an explicit dimension. Understands target costing and DFM implications.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Economic reasoning is embedded in every technical decision. Naturally asks "what does this cost?" and "who pays?" alongside "does this work?" Produces financial analyses that influence project direction. Has an intuitive sense of burn rate and capital implications of scope changes.</div></div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b1">10</div>
+        <div class="comp-info"><div class="comp-name">Patent & IP Intelligence</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Understands basic patent types and that IP matters for ventures. Can search patent databases with guidance. Knows that engineering notebooks support patent filings. Recognizes the concept of freedom to operate.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Conducts independent patent landscape research and summarizes findings for go/no-go decisions. Evaluates whether concepts may fall within existing patent claims. Maintains IP-aware documentation practices. Understands filing timelines and strategic implications.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">IP awareness is embedded in their innovation practice. Proactively identifies potential IP issues early in development. Produces patent landscape analyses that materially inform project strategy. Flags freedom-to-operate concerns before the team has committed resources.</div></div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b2">11</div>
+        <div class="comp-info"><div class="comp-name">Collaborative Professional Practice</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Works cooperatively on team tasks. Gives basic feedback when asked. Avoids conflict rather than engaging with it productively. Contributes ideas but may struggle to build on others' contributions.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Actively builds on others' ideas in collaborative work sessions. Gives specific, actionable feedback unprompted. Engages with disagreement constructively — surfaces concerns without escalating. Receives critical feedback without defensiveness.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Consistently elevates team output through collaborative practice. Others seek out their feedback. Navigates conflict in ways that produce better outcomes. Models feedback culture for the cohort. Creates psychological safety in collaborative settings.</div></div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b2">12</div>
+        <div class="comp-info"><div class="comp-name">Professional Growth & Adaptability</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Learns new tools and methods when directed. Can identify skill gaps when prompted. Prefers clear instructions and defined scope. May struggle when requirements are ambiguous or changing.</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Learns new domains and tools quickly without hand-holding. Makes productive progress under ambiguity — asks clarifying questions, runs small experiments, and moves forward without waiting for complete information. Identifies own skill gaps and seeks learning opportunities proactively.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Thrives in ambiguous environments. Transfers frameworks from one domain to another naturally. Drives their own professional development with a clear sense of trajectory. Models adaptive learning for the cohort. Comfortable saying "I don't know this yet" and efficiently closing the gap.</div></div>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="prog-card" onclick="this.classList.toggle('open')">
+      <div class="prog-card-header">
+        <div class="comp-num b2">13</div>
+        <div class="comp-info"><div class="comp-name">Ethical Reasoning & Responsible Innovation</div></div>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="prog-levels">
+        <div class="prog-level"><div class="prog-level-name aware">Aware</div><div class="prog-level-desc">Recognizes that design decisions can have ethical implications. Understands that AI tools have domain-specific limitations. Can identify obvious ethical concerns when prompted. Beginning to ask "should we?" alongside "can we?"</div></div>
+        <div class="prog-level"><div class="prog-level-name applied">Applied</div><div class="prog-level-desc">Independently identifies ethical dimensions in project work. Exercises informed judgment about AI tool appropriateness by domain. Engages with genuine moral tradeoffs rather than treating ethics as a checklist. Anticipates first-order downstream consequences of innovations.</div></div>
+        <div class="prog-level"><div class="prog-level-name integrated">Integrated</div><div class="prog-level-desc">Ethical reasoning is embedded in their approach to every project. Surfaces ethical considerations the team hasn't identified. Models responsible AI use for the cohort. Traces second and third-order consequences of design decisions as a natural part of evaluation. Helps the team navigate genuine moral complexity.</div></div>
+      </div>
+    </div>
+
+  </div><!-- end prog-grid -->
+</div><!-- end progression view -->
+
+<p class="footer-note">Hardware Park Biodesign Fellowship — Competency Framework v2.0 — February 27, 2026<br>13 parent competencies · 42 sub-skills · Aware → Applied → Integrated progression</p>
+
+<script>
+function switchView(view) {
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+
+  const views = { hierarchy: 0, thematic: 1, compact: 2, progression: 3 };
+  const ids = { hierarchy: 'hierarchyView', thematic: 'thematicView', compact: 'compactView', progression: 'progressionView' };
+
+  document.getElementById(ids[view]).classList.add('active');
+  document.querySelectorAll('.view-btn')[views[view]].classList.add('active');
+}
+</script>
+
+</body>
+</html>
