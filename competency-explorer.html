@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What You'll Learn — Biodesign Fellowship</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hp-primary: #214a98;
+  --hp-secondary: #f0f8ff;
+  --hp-secondary-dark: #ddeeff;
+  --hp-accent: #5a8fd4;
+  --white: #ffffff;
+  --bg: #ffffff;
+  --text: #1e2a3a;
+  --text-sec: #2a3d52;
+  --text-light: #64788a;
+  --border: #d6e3f0;
+  --shadow-sm: 0 1px 3px rgba(33,74,152,0.06);
+  --shadow: 0 2px 8px rgba(33,74,152,0.06), 0 8px 24px rgba(33,74,152,0.04);
+  --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER */
+.page-header { background: var(--hp-secondary); color: var(--text); padding: 0 24px; }
+.header-inner { max-width: 960px; margin: 0 auto; padding: 40px 0 44px; }
+.hp-logo-text {
+  font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--hp-primary);
+  opacity: 0.6; margin-bottom: 28px;
+}
+.page-header h1 {
+  font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 12px; line-height: 1.2; color: var(--hp-primary);
+}
+.page-header .lead {
+  font-size: 1.05rem; line-height: 1.55; color: var(--text-sec); max-width: 640px;
+}
+
+/* MAIN */
+.main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+/* APPROACH */
+.approach-section { margin-bottom: 48px; }
+.approach-section h2 {
+  font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 16px;
+}
+.approach-section > p {
+  font-size: 0.95rem; color: var(--text); line-height: 1.65;
+  margin-bottom: 14px; max-width: 720px;
+}
+.lens-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.lens-card {
+  background: var(--hp-secondary); border-radius: 10px; padding: 20px;
+  border: 1px solid var(--hp-secondary-dark); transition: box-shadow 0.2s ease;
+}
+.lens-card:hover { box-shadow: var(--shadow); }
+.lens-card .lens-icon { font-size: 1rem; flex-shrink: 0; color: var(--hp-primary); }
+.lens-card h3 {
+  font-size: 0.88rem; font-weight: 700; color: var(--hp-primary);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.lens-card p { font-size: 0.82rem; color: var(--text-sec); line-height: 1.5; }
+
+/* VIEW TOGGLE */
+.view-toggle {
+  display: flex; gap: 4px; margin-bottom: 24px;
+  background: var(--hp-secondary); border-radius: 10px; padding: 4px;
+  border: 1px solid var(--hp-secondary-dark); width: fit-content;
+}
+.view-btn {
+  padding: 9px 20px; border: none; background: transparent;
+  font-family: 'DM Sans', sans-serif; font-size: 0.84rem; font-weight: 600;
+  color: var(--text-sec); cursor: pointer; border-radius: 8px; transition: all 0.2s ease;
+}
+.view-btn:hover { color: var(--text); background: rgba(33,74,152,0.06); }
+.view-btn.active { background: var(--hp-primary); color: var(--white); }
+
+.view-panel { display: none; }
+.view-panel.active { display: block; }
+
+/* ASSESS KEY */
+.assess-key {
+  display: flex; gap: 20px; align-items: center;
+  margin-bottom: 24px; font-size: 0.78rem; color: var(--text-sec);
+}
+.assess-key-item { display: flex; align-items: center; gap: 6px; }
+.key-swatch {
+  width: 18px; height: 18px; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; font-weight: 700; color: var(--white);
+}
+.key-swatch.wp { background: var(--hp-primary); }
+.key-swatch.rf { background: var(--hp-accent); }
+
+/* GROUP HEADERS */
+.group-section { margin-bottom: 40px; }
+.group-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--border);
+}
+.group-header h2 { font-size: 1.15rem; font-weight: 700; color: var(--text); }
+.group-header .group-count {
+  font-size: 0.72rem; font-weight: 600; color: var(--text-light);
+  background: var(--hp-secondary); padding: 3px 10px; border-radius: 12px; margin-left: auto;
+}
+
+/* COMP CARDS */
+.comp-card {
+  background: var(--white); border-radius: var(--radius);
+  border: 1px solid var(--border); margin-bottom: 10px;
+  overflow: hidden; transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.comp-card:hover { box-shadow: var(--shadow-sm); border-color: #b8ccdf; }
+.comp-card.open { box-shadow: var(--shadow); border-color: var(--hp-primary); }
+.comp-trigger {
+  padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px;
+  cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.comp-num {
+  width: 30px; height: 30px; border-radius: 8px; color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.comp-num.wp { background: var(--hp-primary); }
+.comp-num.rf { background: var(--hp-accent); }
+.comp-trigger-text { flex: 1; }
+.comp-trigger-text h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.comp-trigger-text p { font-size: 0.82rem; color: var(--text-sec); line-height: 1.5; }
+.comp-arrow {
+  color: var(--text-light); font-size: 0.65rem; margin-top: 8px;
+  flex-shrink: 0; transition: transform 0.25s ease;
+}
+.comp-card.open .comp-arrow { transform: rotate(90deg); }
+
+/* SUB-SKILLS */
+.sub-panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.comp-card.open .sub-panel { max-height: 1200px; }
+.sub-panel-inner { padding: 0 20px 18px 64px; }
+.sub-label {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-light); margin-bottom: 10px;
+}
+.sub-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+.sub-item:last-child { border-bottom: none; }
+.sub-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--hp-primary);
+  flex-shrink: 0; margin-top: 7px; opacity: 0.4;
+}
+.sub-name { font-size: 0.84rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.sub-desc { font-size: 0.78rem; color: var(--text-sec); line-height: 1.5; }
+
+/* FOOTER */
+.page-footer { background: var(--hp-secondary); color: var(--text); padding: 32px 24px; text-align: center; }
+.page-footer .footer-logo {
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--hp-primary); opacity: 0.5; margin-bottom: 6px;
+}
+.page-footer p { font-size: 0.78rem; color: var(--text-sec); opacity: 0.7; }
+
+@media (max-width: 700px) {
+  .page-header h1 { font-size: 1.6rem; }
+  .lens-cards { grid-template-columns: 1fr; }
+  .sub-panel-inner { padding-left: 44px; }
+  .assess-key { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-inner">
+    <img src="HP_Logo_text_oneline.png" alt="Hardware Park" style="height: 44px; margin-bottom: 28px;">
+    <h1>What You'll Learn</h1>
+    <p class="lead">The Biodesign Fellowship develops 13 competencies that make you a more effective engineer, designer, and innovator — skills that employers need and that become more valuable as the world changes around you.</p>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="approach-section">
+  <h2>How we chose these competencies</h2>
+  <p>We didn't pick these from a textbook. We built this framework by looking at three things at once — and keeping only the competencies where all three pointed in the same direction.</p>
+  <div class="lens-cards">
+    <div class="lens-card">
+      <h3><span class="lens-icon">&#9650;</span> Future-facing skills</h3>
+      <p>We studied which engineering and design skills are becoming more valuable as AI tools grow more capable — and focused on the ones that appreciate rather than depreciate.</p>
+    </div>
+    <div class="lens-card">
+      <h3><span class="lens-icon">&#10010;</span> What employers need</h3>
+      <p>We analyzed workforce data, employer surveys, and hiring trends to identify the skills companies struggle to find — especially in engineering, design, and regulated industries.</p>
+    </div>
+    <div class="lens-card">
+      <h3><span class="lens-icon">&#9678;</span> Biodesign process</h3>
+      <p>Every competency maps to the Stanford Biodesign innovation process — the methodology you'll use to take real medical technologies from concept to market.</p>
+    </div>
+  </div>
+</div>
+
+<div class="assess-key">
+  <div class="assess-key-item"><div class="key-swatch wp">#</div> Assessed through your work products</div>
+  <div class="assess-key-item"><div class="key-swatch rf">#</div> Assessed through reflection &amp; coaching</div>
+</div>
+
+<div class="view-toggle">
+  <button class="view-btn active" onclick="switchView('grouped')">By Domain</button>
+  <button class="view-btn" onclick="switchView('sequential')">All 13 in Order</button>
+</div>
+
+<!-- ============ GROUPED VIEW ============ -->
+<div class="view-panel active" id="groupedView">
+
+<div class="group-section">
+  <div class="group-header"><h2>Understanding the Problem</h2><span class="group-count">2 competencies</span></div>
+  <div class="comp-card" data-num="1" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">1</div><div class="comp-trigger-text"><h3>Empathy &amp; Perspective-Driven Design</h3><p>Understanding the people your work affects well enough to make better decisions for them — through observation, deliberate perspective-taking, and checking your own blind spots.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Observation &amp; need-finding</div><div class="sub-desc">Watching people in context, suspending assumptions, and identifying unmet needs through direct engagement rather than desk research alone.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Stakeholder interviewing &amp; need elicitation</div><div class="sub-desc">Conducting interviews with users, clinicians, caregivers, and other stakeholders to surface pain points and workarounds they may not even realize they have.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Stakeholder perspective-taking</div><div class="sub-desc">Carrying empathy into design decisions, concept evaluation, and testing — understanding that different people have different needs, incentives, and power.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Bias recognition in design &amp; research</div><div class="sub-desc">Checking your own blind spots — asking who isn't represented, whose perspective hasn't been sought, and whether design choices inadvertently exclude someone.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="2" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">2</div><div class="comp-trigger-text"><h3>Problem Framing &amp; Reframing</h3><p>Defining what problem is worth solving — questioning assumptions, reframing to expose better solution spaces, and applying first-principles reasoning to resist premature solutions.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">First-principles reasoning</div><div class="sub-desc">Breaking problems down to their fundamental components and building understanding from the ground up, rather than reasoning by analogy or convention.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Reframe generation</div><div class="sub-desc">Deliberately producing alternative framings of the same problem to expand the solution space and avoid locking in too early.</div></div></div></div></div></div>
+</div>
+
+<div class="group-section">
+  <div class="group-header"><h2>Making Smart Decisions</h2><span class="group-count">5 competencies</span></div>
+  <div class="comp-card" data-num="3" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">3</div><div class="comp-trigger-text"><h3>AI Fluency</h3><p>Directing, verifying, and integrating AI tools into professional work with skill and accountability.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Prompt engineering &amp; iterative direction</div><div class="sub-desc">Structuring clear, context-rich prompts and refining them through iterative cycles to get increasingly useful outputs from AI tools.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Output validation &amp; calibrated skepticism</div><div class="sub-desc">Developing an accurate sense of when AI tools are reliable and when they're confidently wrong — rather than defaulting to blind trust or blanket distrust.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">AI-augmented workflow design</div><div class="sub-desc">Identifying which parts of a workflow benefit from AI assistance and building repeatable processes that leverage AI while preserving human judgment.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Ethical ownership of AI outputs</div><div class="sub-desc">Your name on the work means you've vetted what the tool produced — taking accountability for quality, accuracy, and representativeness.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="4" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">4</div><div class="comp-trigger-text"><h3>Evidence Provenance &amp; Critical Interpretation</h3><p>Understanding where evidence comes from, what it can and cannot support, and making sound inferences under uncertainty.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Quantitative data provenance &amp; interpretation</div><div class="sub-desc">Understanding what the numbers actually tell you and where they stop being reliable — measurement uncertainty, sample size, statistical validity.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Research &amp; source credibility assessment</div><div class="sub-desc">Knowing the difference between a peer-reviewed multicenter trial and a vendor white paper, and calibrating your confidence accordingly.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="6" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">6</div><div class="comp-trigger-text"><h3>Systems &amp; Integrative Reasoning</h3><p>Seeing interactions across subsystems, translating across disciplines, and anticipating how changes propagate through complex systems.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Systems thinking &amp; feedback loop analysis</div><div class="sub-desc">Identifying the variables, relationships, and feedback loops that define how a system behaves — and understanding why systems often resist intervention.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Cross-disciplinary synthesis</div><div class="sub-desc">Integrating knowledge from different fields into coherent solutions — and knowing when a problem requires expertise beyond your own discipline.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">2nd &amp; 3rd-order consequence modeling</div><div class="sub-desc">Anticipating how a design decision ripples beyond its immediate effect into adjacent systems — asking "and then what happens?"</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="9" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">9</div><div class="comp-trigger-text"><h3>Venture Economics</h3><p>Tracing the financial implications of technical decisions and the technical implications of financial constraints — because every technical decision is simultaneously an economic one.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Market &amp; competitive intelligence</div><div class="sub-desc">Understanding market size, competitive positioning, and buying processes — evaluating competitors on commercial positioning, not just technical merit.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Problem economics &amp; viability assessment</div><div class="sub-desc">Evaluating whether the economics of a problem justify pursuing a solution — sizing cost burden, identifying who pays, and understanding reimbursement pathways.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Product economic modeling</div><div class="sub-desc">Building rough but honest estimates of development cost, unit economics, and capital requirements — what it actually costs to get from concept to cleared product.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Financial dimensions of design decisions</div><div class="sub-desc">Evaluating technical tradeoffs with cost alongside performance — including target costing, design for manufacturing, and build-vs-license-vs-partner reasoning.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="10" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">10</div><div class="comp-trigger-text"><h3>Patent &amp; IP Intelligence</h3><p>Understanding and navigating the intellectual property landscape — using AI tools to conduct research and applying critical judgment to interpret results.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Patent system literacy</div><div class="sub-desc">Understanding provisional vs. non-provisional applications, utility vs. design patents, filing timelines, and how protection is obtained and sustained.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Patent landscape research</div><div class="sub-desc">Searching patent databases, identifying relevant patents, and summarizing the landscape in a way that informs a go/no-go decision.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Freedom-to-operate assessment</div><div class="sub-desc">Evaluating whether a proposed concept falls within existing patent claims and flagging potential conflicts for deeper expert review.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">IP-aware documentation practices</div><div class="sub-desc">Maintaining engineering notebooks and design records that support potential patent filings — understanding inventorship and documenting conception.</div></div></div></div></div></div>
+</div>
+
+<div class="group-section">
+  <div class="group-header"><h2>Delivering Real Work</h2><span class="group-count">3 competencies</span></div>
+  <div class="comp-card" data-num="5" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">5</div><div class="comp-trigger-text"><h3>Technical &amp; Stakeholder Communication</h3><p>Communicating technical work effectively across audiences and formats — translating complexity into clarity without losing rigor.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Translational communication</div><div class="sub-desc">Moving fluently between disciplinary vocabularies — explaining technical concepts to non-technical audiences without dumbing down or overcomplicating.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Structured argumentation &amp; persuasion</div><div class="sub-desc">Building clear, evidence-based cases for design decisions with followable logic and traceable evidence — in memos, slide decks, or live presentations.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Sketch communication</div><div class="sub-desc">Rapidly externalizing ideas through hand sketches during conversations and design reviews — a real-time conversational tool, not a polished deliverable.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Data &amp; visual communication</div><div class="sub-desc">Making data tell a clear story rather than just displaying numbers — charts, diagrams, and designed visuals that communicate relationships.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="7" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">7</div><div class="comp-trigger-text"><h3>Agile &amp; Iterative Project Execution</h3><p>Breaking work into testable increments, incorporating feedback loops, and treating each iteration as an opportunity to learn and adjust.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Sprint planning &amp; task decomposition</div><div class="sub-desc">Breaking work into time-bounded, prioritized sprints with clear deliverables — making the work visible and manageable.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Clarifying ambiguity through iterative testing</div><div class="sub-desc">Moving forward productively when requirements are incomplete — designing each iteration to answer a specific question, then adjusting based on evidence.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Retrospective practice</div><div class="sub-desc">Structured reflection on what worked, what didn't, and what to change — improving how you work, not just what you produce.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="8" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num wp">8</div><div class="comp-trigger-text"><h3>Regulatory &amp; Compliance Literacy</h3><p>Understanding how innovation interacts with governance frameworks — designing with regulatory and quality constraints from the start rather than treating them as obstacles.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Regulatory pathway analysis</div><div class="sub-desc">Understanding clearance and approval mechanisms — knowing the difference between 510(k), De Novo, and PMA, and how pathway selection shapes development strategy.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Design controls &amp; documentation practice</div><div class="sub-desc">Working within a design control framework from the start — understanding that how you develop is as important as what you develop.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Risk management fundamentals</div><div class="sub-desc">Applying structured risk analysis to design decisions and integrating risk thinking into everyday engineering judgment.</div></div></div></div></div></div>
+</div>
+
+<div class="group-section">
+  <div class="group-header"><h2>Growing as a Professional</h2><span class="group-count">3 competencies</span></div>
+  <div class="comp-card" data-num="11" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num rf">11</div><div class="comp-trigger-text"><h3>Collaborative Professional Practice</h3><p>Working generatively with others — building on ideas, giving actionable feedback, and navigating disagreement as a productive force rather than a threat.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Co-creation &amp; generative collaboration</div><div class="sub-desc">Contributing to shared work in ways that build on others' ideas — thinking together rather than just dividing and conquering.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Feedback as professional practice</div><div class="sub-desc">Giving specific, actionable feedback that helps others improve, and receiving feedback without defensiveness — treating it as a normal part of work.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Navigating conflict &amp; disagreement productively</div><div class="sub-desc">Engaging with disagreement as a source of better decisions — distinguishing productive tension about ideas from unproductive friction between people.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="12" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num rf">12</div><div class="comp-trigger-text"><h3>Professional Growth &amp; Adaptability</h3><p>Learning fast, moving forward under uncertainty, and taking ownership of your own development trajectory.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Adaptive learning &amp; framework transfer</div><div class="sub-desc">Learning what you need when you need it — applying frameworks from one domain to unfamiliar problems rather than relying only on what you already know.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Operating under ambiguity</div><div class="sub-desc">Making progress when the path isn't clear, the requirements aren't defined, or the information is incomplete — without freezing or rushing to premature closure.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Self-directed professional development</div><div class="sub-desc">Identifying your own skill gaps, seeking out learning opportunities, and taking initiative for your growth rather than waiting for someone to assign it.</div></div></div></div></div></div>
+
+  <div class="comp-card" data-num="13" onclick="this.classList.toggle('open')"><div class="comp-trigger"><div class="comp-num rf">13</div><div class="comp-trigger-text"><h3>Ethical Reasoning &amp; Responsible Innovation</h3><p>Recognizing ethical dimensions in real work and reasoning through genuine moral complexity — practical judgment that shapes design and development decisions.</p></div><span class="comp-arrow">&#9654;</span></div><div class="sub-panel"><div class="sub-panel-inner"><div class="sub-label">What this looks like in practice</div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Responsible innovation &amp; foresight</div><div class="sub-desc">Proactively considering downstream consequences before problems emerge — building the habit of asking "should we?" alongside "can we?"</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Understanding AI limitations by domain</div><div class="sub-desc">Recognizing that a tool effective for brainstorming may be unreliable for regulatory research — making informed choices about where to rely on AI versus where human expertise is non-negotiable.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">Ethical reasoning under competing values</div><div class="sub-desc">Working through genuine moral tradeoffs where legitimate values conflict — access vs. affordability, speed vs. thoroughness, innovation vs. precaution.</div></div></div><div class="sub-item"><div class="sub-dot"></div><div><div class="sub-name">2nd &amp; 3rd-order consequence modeling</div><div class="sub-desc">Moving beyond "does this work?" to "what happens when this works at scale, and who is affected in ways we didn't intend?"</div></div></div></div></div></div>
+</div>
+
+</div><!-- end grouped view -->
+
+<!-- ============ SEQUENTIAL VIEW ============ -->
+<div class="view-panel" id="sequentialView">
+<div id="seqCards"></div>
+</div>
+
+</div><!-- end main -->
+
+<div class="page-footer">
+  <img src="HP_Logo_text_oneline.png" alt="Hardware Park" style="height: 32px; margin-bottom: 28px;">
+  <p>Biodesign Fellowship &middot; Birmingham, Alabama</p>
+</div>
+
+<script>
+function switchView(view) {
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(view + 'View').classList.add('active');
+  document.querySelectorAll('.view-btn')[view === 'grouped' ? 0 : 1].classList.add('active');
+  if (view === 'sequential' && !document.getElementById('seqCards').hasChildNodes()) {
+    buildSequentialView();
+  }
+}
+function buildSequentialView() {
+  var container = document.getElementById('seqCards');
+  var allCards = document.querySelectorAll('#groupedView .comp-card');
+  var cardData = [];
+  allCards.forEach(function(card) {
+    cardData.push({ num: parseInt(card.getAttribute('data-num')), html: card.outerHTML });
+  });
+  cardData.sort(function(a, b) { return a.num - b.num; });
+  container.innerHTML = cardData.map(function(c) {
+    return c.html.replace(/class="comp-card open"/g, 'class="comp-card"');
+  }).join('');
+  container.querySelectorAll('.comp-card').forEach(function(card) {
+    card.onclick = function() { this.classList.toggle('open'); };
+  });
+}
+</script>
+
+</body>
+</html>
