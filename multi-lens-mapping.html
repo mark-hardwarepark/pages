@@ -206,6 +206,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .thematic-card p {
   font-size: 0.78rem; color: var(--text-sec); line-height: 1.5; margin-bottom: 0;
 }
+.intro-section a:hover { opacity: 0.75; }
 .tc-understand { border-left-color: #0e7490; }
 .tc-understand h4 { color: #0e7490; }
 .tc-decisions { border-left-color: #6c3fa0; }
@@ -271,7 +272,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 <div class="intro-section">
   <h2>Why Three Lenses?</h2>
   <p>A competency framework is only as strong as the reasoning behind it. Rather than relying on a single justification for each competency, we validated the framework through three independent lenses — each asking a different question about why these 13 competencies matter.</p>
-  <p><strong>Lens 1 — AI Era / Forward-Looking Skills</strong> asks which human skills become <em>more</em> valuable as AI tools grow more capable. <strong>Lens 2 — STEM Employer Needs</strong> asks whether each competency addresses a documented hiring gap or workforce shortage. <strong>Lens 3 — Biodesign Process Mapping</strong> asks where in the Stanford Biodesign process each competency gets developed and exercised. When all three lenses converge on the same competency, the case for its inclusion is strongest.</p>
+  <p><strong><a href="javascript:void(0)" onclick="switchView('ai')" style="color:var(--ai);text-decoration:none;border-bottom:2px solid var(--ai);">Lens 1 — AI Era / Forward-Looking Skills</a></strong> asks which human skills become <em>more</em> valuable as AI tools grow more capable. <strong><a href="javascript:void(0)" onclick="switchView('emp')" style="color:var(--emp);text-decoration:none;border-bottom:2px solid var(--emp);">Lens 2 — STEM Employer Needs</a></strong> asks whether each competency addresses a documented hiring gap or workforce shortage. <strong><a href="javascript:void(0)" onclick="switchView('bio')" style="color:var(--bio);text-decoration:none;border-bottom:2px solid var(--bio);">Lens 3 — Biodesign Process Mapping</a></strong> asks where in the Stanford Biodesign process each competency gets developed and exercised. When all three lenses converge on the same competency, the case for its inclusion is strongest.</p>
   <p>The 13 competencies are organized into four thematic groups that describe how they work together in practice:</p>
   <div class="thematic-grid">
     <div class="thematic-card tc-understand">
@@ -622,6 +623,7 @@ function switchView(view) {
   const btns = document.querySelectorAll('.view-btn');
   const map = { summary: 0, ai: 1, emp: 2, bio: 3 };
   btns[map[view]].classList.add('active');
+  document.querySelector('.view-toggle').scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 </body>
