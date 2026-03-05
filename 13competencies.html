@@ -276,7 +276,7 @@ function switchView(view) {
   document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
   document.getElementById(view + 'View').classList.add('active');
-  document.querySelectorAll('.view-btn')[view === 'grouped' ? 0 : 1].classList.add('active');
+  document.querySelectorAll('.view-btn')[view === 'sequential' ? 0 : 1].classList.add('active');
   if (view === 'sequential' && !document.getElementById('seqCards').hasChildNodes()) {
     buildSequentialView();
   }
